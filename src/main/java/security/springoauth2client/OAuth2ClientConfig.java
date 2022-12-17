@@ -13,6 +13,8 @@ public class OAuth2ClientConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests()
                 .requestMatchers("/loginPage").permitAll()
+                .requestMatchers("/user").permitAll()
+                .requestMatchers("/oidc").permitAll()
                 .anyRequest()
                 .authenticated();
 
