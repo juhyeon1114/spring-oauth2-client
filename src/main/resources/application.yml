@@ -11,7 +11,7 @@ spring:
             client-id: oauth2-client-app
             client-secret: WYSyfEdtjIx1DTqlggyWVmtmJ1EVHnI0
             client-name: test
-            redirect-uri: http://localhost:8080/login/oauth2/code/keycloak
+            redirect-uri: http://localhost:8080/login/v1/oauth2/code/keycloak
             authorization-grant-type: authorization_code
             client-authentication-method: client_secret_basic # base64로 인코딩하는 방식. {etc: client_secret_post, none(퍼블릭 클라이언트)}
 #            client-authentication-method: client_secret_post # Form 제출 방식

@@ -11,20 +11,22 @@ import org.springframework.security.oauth2.core.OAuth2AccessToken;
 import org.springframework.security.oauth2.core.oidc.IdTokenClaimNames;
 import org.springframework.security.oauth2.core.oidc.OidcIdToken;
 import org.springframework.security.oauth2.core.user.OAuth2User;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.time.Instant;
 import java.util.HashMap;
 import java.util.Map;
 
-@RestController
+@Controller
 @RequiredArgsConstructor
 public class LoginController {
 
     private final ClientRegistrationRepository clientRegistrationRepository;
 
     @GetMapping("/loginPage")
+    @ResponseBody
     public String loginPage() {
         return "loginPage";
     }
@@ -34,6 +36,7 @@ public class LoginController {
      * User 조회 기본 흐름 (OAuth2Client 에서 기본으로 제공하는 기능이지만, 흐름을 파악하기 위함)
      */
     @GetMapping("/user")
+    @ResponseBody
     public OAuth2User user(String accessToken) {
         ClientRegistration clientRegistration = clientRegistrationRepository.findByRegistrationId("keycloak");
 
@@ -47,6 +50,7 @@ public class LoginController {
      * [OIDC 를 활용한 방식]
      */
     @GetMapping("/oidc")
+    @ResponseBody
     public OAuth2User oidc(String accessToken, String idToken) {
         ClientRegistration clientRegistration = clientRegistrationRepository.findByRegistrationId("keycloak");
 
@@ -68,4 +72,8 @@ public class LoginController {
         return oidcUserService.loadUser(oidcUserRequest);
     }
 
+    @GetMapping("/login")
+    public String login() {
+        return "login";
+    }
 }

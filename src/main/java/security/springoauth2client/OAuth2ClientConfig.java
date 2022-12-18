@@ -20,14 +20,24 @@ public class OAuth2ClientConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests()
                 .requestMatchers("/login").permitAll()
+                .requestMatchers("/logout").permitAll()
                 .requestMatchers("/loginPage").permitAll()
                 .requestMatchers("/user").permitAll()
                 .requestMatchers("/oidc").permitAll()
                 .anyRequest()
                 .authenticated();
 
-//        http.oauth2Login(config -> config.loginPage("/loginPage"));
-        http.oauth2Login(Customizer.withDefaults());
+        http.oauth2Login(config -> config
+                .loginPage("/login")
+                .authorizationEndpoint(authorizationEndpointConfig ->
+                        authorizationEndpointConfig.baseUri("/oauth2/v1/authorization")
+                )
+                .redirectionEndpoint(redirectionEndpointConfig ->
+                        redirectionEndpointConfig.baseUri("/login/v1/oauth2/code/*")
+                )
+        );
+
+//        http.oauth2Login(Customizer.withDefaults());
 
         http.logout()
                 .logoutSuccessHandler(logoutSuccessHandler())
