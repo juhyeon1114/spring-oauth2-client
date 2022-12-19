@@ -19,7 +19,7 @@ import java.time.Instant;
 import java.util.HashMap;
 import java.util.Map;
 
-@Controller
+//@Controller
 @RequiredArgsConstructor
 public class LoginController {
 

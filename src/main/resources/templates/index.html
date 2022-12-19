@@ -1,0 +1,40 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <script>
+
+        function authorizationCode() {
+            window.location = "/oauth2/authorization/keycloak"
+        }
+
+    </script>
+</head>
+<body>
+<div>Welcome</div>
+<div sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></div>
+
+<form sec:autorize="isAnonymous()" action="#">
+    <p><input type="button" onclick="authorizationCode()" value="authorizationCode"/></p>
+</form>
+
+<!--<form action="#">-->
+<!--    <p><input type="button" onclick="photos()" value="Photos"/>-->
+<!--    <p><input type="button" onclick="myInfo()" value="MyInfo"/>-->
+<!--    <p><input type="button" onclick="tokenExpire()" value="tokenExpire"/>-->
+<!--</form>-->
+<!--<div id="photos"></div>-->
+<!--<p></p>-->
+<!--<div id="remotePhotos"></div>-->
+
+<!--</p>-->
+<!--<div id="albums"></div>-->
+
+<!--<p></p>-->
+<!--<div id="friends"></div>-->
+</body>
+</html>
