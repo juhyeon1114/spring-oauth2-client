@@ -72,8 +72,8 @@ public class LoginController {
         return oidcUserService.loadUser(oidcUserRequest);
     }
 
-    @GetMapping("/login")
-    public String login() {
-        return "login";
-    }
+//    @GetMapping("/login")
+//    public String login() {
+//        return "login";
+//    }
 }

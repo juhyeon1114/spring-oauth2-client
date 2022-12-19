@@ -19,7 +19,9 @@ import org.springframework.security.web.authentication.logout.LogoutSuccessHandl
 public class OAuth2ClientConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests().anyRequest().authenticated();
+        http.authorizeHttpRequests()
+                .requestMatchers("/login", "/home", "/client", "/logout").permitAll()
+                .anyRequest().authenticated();
         http.oauth2Client(Customizer.withDefaults());
         return http.build();
     }
