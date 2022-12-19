@@ -19,7 +19,7 @@ public class AppConfig {
      * -> 한 개 이상의 OAuth2AuthorizedClientProvider 와 함께 동작한다.
      */
     @Bean
-    public OAuth2AuthorizedClientManager auth2AuthorizedClientManager(
+    public DefaultOAuth2AuthorizedClientManager auth2AuthorizedClientManager(
             ClientRegistrationRepository clientRegistrationRepository,
             OAuth2AuthorizedClientRepository oAuth2AuthorizedClientRepository
     ) {
