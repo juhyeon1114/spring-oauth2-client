@@ -18,7 +18,7 @@ public class HomeController {
     @GetMapping("/home")
     public String home(
             Model model,
-           @RegisteredOAuth2AuthorizedClient("keycloak") OAuth2AuthorizedClient authorizedClient,
+           @RegisteredOAuth2AuthorizedClient("keycloak") OAuth2AuthorizedClient authorizedClient
    ) {
 
         model.addAttribute("AccessToken", authorizedClient.getAccessToken());
