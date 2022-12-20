@@ -10,6 +10,8 @@ import org.springframework.security.oauth2.client.registration.ClientRegistratio
 import org.springframework.security.oauth2.client.web.DefaultOAuth2AuthorizedClientManager;
 import org.springframework.security.oauth2.client.web.OAuth2AuthorizedClientRepository;
 
+import java.time.Duration;
+
 @Configuration
 public class AppConfig {
 
@@ -29,7 +31,7 @@ public class AppConfig {
                         .authorizationCode()
                         .password() // deprecated
                         .clientCredentials()
-                        .refreshToken()
+                        .refreshToken(refreshTokenGrantBuilder -> refreshTokenGrantBuilder.clockSkew(Duration.ofSeconds(3600)))
                         .build();
 
         DefaultOAuth2AuthorizedClientManager oAuth2AuthorizedClientManager = new DefaultOAuth2AuthorizedClientManager(
